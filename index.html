@@ -1,0 +1,132 @@
+
+<!DOCTYPE html5>
+<html lang="en">
+ 
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  
+  
+  <title>Application form</title>
+</head>
+ 
+<body onload="createnewCaptcha()" >
+  <div class="container">
+    <div class="form">
+      <div class="btn">
+        <center>
+        <h3 class="signUpBtn">Job Application</h3>
+        </center>
+      </div>
+      <form class="signUp" id="formid" action=""  method="POST" name="myform" onsubmit="return valid()" >
+        <div class="formGroup">
+          <input type="text" id="userName" name="name" required placeholder="Full Name" />
+        </div>
+        <div class="formGroup">
+          <input type="email"  id="mail" placeholder="Email ID" name="mail2" required />
+        </div>
+        <div class="formGroup">
+          <input type="text" id="password"  name="mob" maxlength="10" placeholder="Mobile NO" required />
+        </div>
+        <div class="formGroup">
+            <input type="text" name="hq" placeholder="Highest Qualification" required />
+          </div>
+    
+        <div class="formGroup">
+            <input type="text" name="exp" placeholder="Experience/Fresher" required />
+          </div>
+          <div class="formGroup">
+            <input type="text" name="sal" placeholder="Expected Salary" required />
+          </div>
+          <input type="text" id="captcha" class="cap" value="" readonly>
+          <button id="refresh" type="button" onclick="createnewCaptcha()">Refresh</button>
+          <input type="text"  id="recaptcha" class="cap" ><b style="color: white;">  Enter Captcha</b>
+        <div class="formGroup">
+
+        
+            <button type="button"  class="btn2" onclick="validatecaptcha(),valid()">REGISTER</button>
+        
+        </div>
+      </form>
+    </div>
+</div>
+
+<script type="text/javascript">
+        var alpha,cap;
+        function createnewCaptcha()
+        {
+            //alpha=['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y' ,'z'];       
+            alpha="123456789QWERTYUIPLKJHGFDSAZXCVBNMqwertyuiplkjhgfdsazxcvbnm";
+           cap=alpha[Math.floor(Math.random()*alpha.length)];
+            for(var i=0;i<5;i++)
+            {
+                cap=cap+alpha[Math.floor(Math.random()*alpha.length)];
+            }
+            document.getElementById("captcha").value=cap;
+            
+        }
+        
+            function validatecaptcha()
+            {
+                var str1=document.getElementById("captcha").value;
+                var str2=document.getElementById("recaptcha").value;
+                if(str1==str2)
+                {
+                   document.getElementById("captcha").value="";
+                   //valid();
+                  window.location="thankyou.html";
+                }
+                else{
+                    alert("Please Enter valid captcha");
+                    document.getElementById("captcha").value="";
+                    return false;
+                    createnewCaptcha();
+                }
+                
+            }
+
+
+function valid()
+{  
+var name=document.myform.name.value;  
+var mail2=document.myform.mail2.value;  
+var mob=document.myform.mob.value;  
+var hq=document.myform.hq.value;  
+var exp=document.myform.exp.value;  
+var sal=document.myform.sal.value;  
+  
+  
+if (name==null || name==""){  
+  alert("Name can't be blank");  
+  window.location="index.html";
+  
+}
+if(mail2==null || mail2==""){  
+  alert("Email Can't be blank");  
+  window.location="index.html";
+  
+  }  
+  if(mob==null || mob==""){  
+  alert("Mobile Number Can't be blank");  
+  window.location="index.html";
+  }  
+  if(hq==null || hq==""){  
+  alert("Highest Qualification Can't be blank");  
+  window.location="index.html";
+  }  
+  if(exp==null || exp==""){  
+  alert("Experience Can't be blank");  
+  window.location="index.html";
+  }  
+  if(sal==null || sal==""){  
+  alert("Expected Salary Can't be blank");  
+  window.location="index.html";
+  }  
+}  
+
+      </script>
+      
+      </body>
+      </html>
